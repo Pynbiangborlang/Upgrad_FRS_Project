@@ -1,9 +1,18 @@
 package com.upgrad.frs;
 
 public class TouristTicket {
-    int id;
-    String hotelAddress;
-    String[] touristLocation = new String[5];
+
+    private int id;
+    private String hotelAddress;
+    private String[] touristLocation = new String[5];
+    private Flight flight;
+
+    public TouristTicket(int id, String hotelAddress, String location, Flight flight){
+        this.id =id;
+        this.hotelAddress = hotelAddress;
+        this.touristLocation[0] = location;
+        this.flight = flight;
+    }
 
     TouristTicket(int id, String hotelAddress, String touristLocation){
         this.id=id;
@@ -27,4 +36,22 @@ public class TouristTicket {
             }
         }
     }
+
+    //setters and getters
+    public String getHotelAddress() {
+        return hotelAddress;
+    }
+
+    public void setHotelAddress(String hotelAddress) {
+        this.hotelAddress = hotelAddress;
+    }
+
+    public String[] getTouristLocation() {
+        return touristLocation;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
 }
