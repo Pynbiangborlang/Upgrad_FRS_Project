@@ -1,19 +1,20 @@
 package com.upgrad.frs;
 
-public class RegularTicket {
+public class RegularTicket extends Ticket {
     private int id;
-    private String[] service = new String[3];
-    private Flight flight;
+    private String[] service = new String[3]; //number of service is randomly set to maximum 3 services for one passenger
 
     //Constructor when regular ticket is call for first time
-    RegularTicket(int id, String service, Flight flight){
-        this.id=id;
+    RegularTicket(String service, String pnrNumber, String placeOfDeparture, String destination, String departureDate, String departureTime, String arrivalDate, String arrivalTime, String seatNumber, int duration, float ticketPrice, Flight flight, Passenger passenger){
+
+        //calling parent constructor
+        super(pnrNumber, placeOfDeparture,destination, departureDate, arrivalDate, departureTime, arrivalTime, seatNumber, duration, ticketPrice, flight, passenger);
+        this.id = super.getId();
         this.service[0]=service;
-        this.flight = flight;
     }
 
     // method where passenger can check availed services
-    String[] checkServices(){
+    public String[] checkServices(){
         return service;
     }
 

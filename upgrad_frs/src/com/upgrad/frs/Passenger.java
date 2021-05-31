@@ -13,6 +13,12 @@ public class Passenger{
         //contact details
         private String contactName, contactPhone, contactEmail;
 
+        //empty contact Constructor
+        public Contact(){
+
+        }
+
+        //parameterized Contact constructor
         public Contact(int id, String name, String phone, String email) {
             this.id = id;
             contactName = name;
@@ -20,11 +26,23 @@ public class Passenger{
             contactEmail = email;
         }
 
+        //Copy constructor
+        public Contact(Contact contact){
+              this(contact.id, contact.contactName, contact.contactPhone, contact.contactEmail);
+        }
+
         //method for updating Contact details
         public void updateContact(String contactName, String contactPhone, String contactEmail){
             this.contactName=contactName;
             this.contactPhone = contactPhone;
             this.contactEmail  = contactEmail;
+        }
+
+        //getter and setter method
+
+
+        public int getId() {
+            return id;
         }
 
         public String getContactName() {
@@ -55,8 +73,18 @@ public class Passenger{
     // composition between Address and Passenger
     private static class Address {
         int id;
+
         //Address details
         private String addressStreet, addressState, addressCity;
+
+        //empty Constructor
+        public Address(){
+
+        }
+
+        public Address(Address address){
+            this(address.id, address.addressStreet, address.addressState, address.addressCity);
+        }
 
         public Address(int id, String street, String state, String city) {
             this.id =id;
@@ -71,13 +99,57 @@ public class Passenger{
             this.addressState=addressState;
             this.addressCity=addressCity;
         }
+
+        //getter and setter for Address
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getAddressStreet() {
+            return addressStreet;
+        }
+
+        public void setAddressStreet(String addressStreet) {
+            this.addressStreet = addressStreet;
+        }
+
+        public String getAddressState() {
+            return addressState;
+        }
+
+        public void setAddressState(String addressState) {
+            this.addressState = addressState;
+        }
+
+        public String getAddressCity() {
+            return addressCity;
+        }
+
+        public void setAddressCity(String addressCity) {
+            this.addressCity = addressCity;
+        }
     }//end of Address class
 
+    //empty constructor
+    public Passenger(){
+
+    }
+
     //Passenger constructor
-    Passenger(String name, String phone, String email, String street, String state, String city){
+    public Passenger(String name, String phone, String email, String street, String state, String city){
        this.id = ++idCounter;
         Contact contact = new Contact(id, name, phone, email);
         Address address = new Address(id, street, state, city);
+    }
+
+    public Passenger(Passenger passenger){
+        this.id = ++idCounter;
+        this.contact = passenger.contact;
+        this.address = passenger.address;
     }
 
     // getter for id
@@ -91,25 +163,28 @@ public class Passenger{
         return idCounter;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Contact getContact() {
-        return contact;
+    //to get contact details
+    public String getContact() {
+        return "Name: " + contact.getContactName() +", Phone: " + contact.getContactPhone() + ", Email: " + contact.getContactEmail();
     }
 
     //updating Contact details method
     public void updateContactDetails(Contact contact, String contactName, String contactPhone, String contactEmail) {
-         contact.updateContact(contactName, contactPhone, contactEmail);
+        if(contact.getId()== this.id){
+            contact.updateContact(contactName, contactPhone, contactEmail);
+        }
     }
 
-    public Address getAddress() {
-        return address;
+    //to check address details
+    public String getAddress() {
+        return "Street: " + address.getAddressStreet() +", State: " + address.getAddressState() + ", City: "+ address.addressCity;
     }
 
     //updating Address details method
-    public void updateContactDetails(Address address, String addressStreet, String addressState, String addressCity) {
-        contact.updateContact(addressStreet, addressState, addressCity);
+    public void updateAddressDetails(Address address, String addressStreet, String addressState, String addressCity) {
+        if(address.getId()== this.id){
+            address.updateAddress(addressStreet, addressState, addressCity);
+        }
+
     }
 }

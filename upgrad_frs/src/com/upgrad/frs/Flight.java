@@ -5,6 +5,7 @@ public class Flight {
     private String flightNumber;
     private int capacity;
     private int bookedSeat;
+    private  boolean availability;
 
 
     //Flight constructor to initialize the Flight object
@@ -13,6 +14,7 @@ public class Flight {
            this.flightNumber = flightNumber;
            this.capacity = capacity;
            bookedSeat = 0;
+           availability = true;
     }
 
 
@@ -38,5 +40,15 @@ public class Flight {
     // return the number of seat booked
     public int getBookedSeat() {
         return bookedSeat;
+    }
+
+    //return flight ia available or not
+    public boolean getAvailability(){
+        return availability;
+    }
+
+    //set flight availability
+    private void setAvailability(boolean availability){
+           this.availability = availability;
     }
 }

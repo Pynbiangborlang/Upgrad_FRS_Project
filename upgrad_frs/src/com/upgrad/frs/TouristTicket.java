@@ -1,25 +1,21 @@
 package com.upgrad.frs;
 
-public class TouristTicket {
+public class TouristTicket extends Ticket {
 
     private int id;
     private String hotelAddress;
     private String[] touristLocation = new String[5];
-    private Flight flight;
 
-    public TouristTicket(int id, String hotelAddress, String location, Flight flight){
-        this.id =id;
+    //constructor for Tourist Ticket
+    public TouristTicket(String hotelAddress, String touristlocation, String pnrNumber, String placeOfDeparture, String destination, String departureDate, String departureTime, String arrivalDate, String arrivalTime, String seatNumber, int duration,  float ticketPrice, Flight flight, Passenger passenger){
+        //calling parent(Ticket) constructor
+        super(pnrNumber, placeOfDeparture,destination, departureDate, arrivalDate, departureTime, arrivalTime, seatNumber, duration, ticketPrice, flight, passenger);
+        this.id =super.getId();
         this.hotelAddress = hotelAddress;
-        this.touristLocation[0] = location;
-        this.flight = flight;
+        this.touristLocation[0] = touristlocation;
     }
 
-    TouristTicket(int id, String hotelAddress, String touristLocation){
-        this.id=id;
-        this.hotelAddress=hotelAddress;
-        this.touristLocation[0] = touristLocation;
-    }
-
+    //method for adding maximum 5 number of tourist locations
     void addTouristLocation(String touristLocation){
         if(this.touristLocation.length<5){
             int k=touristLocation.length()+1;
@@ -29,6 +25,7 @@ public class TouristTicket {
         }
     }
 
+    //method for removing a tourist location
     void removeTouristLocation(String touristLocation){
         for(int i=0; i<5; i++){
             if(this.touristLocation[i].equalsIgnoreCase(touristLocation)){
@@ -48,10 +45,6 @@ public class TouristTicket {
 
     public String[] getTouristLocation() {
         return touristLocation;
-    }
-
-    public Flight getFlight() {
-        return flight;
     }
 
 }

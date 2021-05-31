@@ -1,25 +1,36 @@
 package com.upgrad.frs;
 
-public class Ticket {
-    private static int id;
+public abstract class Ticket {
+    private int id;
     private int duration;
-
-    private String pnrNumber, placeOfDeparture, destination, departureDate, departureTime, arrivalDate, arrivalTime;
+    private String pnrNumber, placeOfDeparture, destination, departureDate, departureTime, arrivalDate, arrivalTime, seatNumber;
     private Flight flight;
     private Passenger passenger;
     private float ticketPrice;
     private boolean status;
 
+    //Constructor overloading
+    public Ticket(String departureDate, String departureTime, String arrivalDate, String arrivalTime, String seatNumber, int duration){
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+        this.arrivalDate = arrivalDate;
+        this.departureTime = arrivalTime;
+        this.seatNumber = seatNumber;
+        this.duration = duration;
+    }
+
     //providing Ticket constructor
-    public Ticket(String pnrNumber, String placeOfDeparture, String destination, float ticketPrice, Flight flight, Passenger passenger){
+    public Ticket(String pnrNumber, String placeOfDeparture, String destination, String departureDate, String departureTime, String arrivalDate, String arrivalTime, String seatNumber, int duration, float ticketPrice, Flight flight, Passenger passenger){
+        this(departureDate, departureTime, arrivalDate, arrivalTime, seatNumber, duration);
+        this.flight = flight;
         this.passenger = passenger;
         this.id = passenger.getId();
         this.pnrNumber = pnrNumber;
         this.placeOfDeparture = placeOfDeparture;
         this.destination = destination;
         this.ticketPrice = ticketPrice;
-        this.flight = flight;
-        flight.updateBookedSeat();
+        status = true;
+        flight.updateBookedSeat(); // to update the number of booked seats everytime a ticket is created
     }
 
     //method for cancelling tickets
