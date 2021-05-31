@@ -1,7 +1,7 @@
 package com.upgrad.frs;
 
 public class RegularTicket extends Ticket {
-    private int id;
+    private final int id;
     private String[] service = new String[3]; //number of service is randomly set to maximum 3 services for one passenger
 
     //Constructor when regular ticket is call for first time

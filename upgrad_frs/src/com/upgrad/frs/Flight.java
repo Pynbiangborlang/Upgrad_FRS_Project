@@ -1,7 +1,7 @@
 package com.upgrad.frs;
 
 public class Flight {
-    private int id;
+    private final int id;
     private String flightNumber;
     private int capacity;
     private int bookedSeat;

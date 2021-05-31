@@ -2,17 +2,17 @@ package com.upgrad.frs;
 
 public class TouristTicket extends Ticket {
 
-    private int id;
+    private final int id;
     private String hotelAddress;
     private String[] touristLocation = new String[5];
 
     //constructor for Tourist Ticket
-    public TouristTicket(String hotelAddress, String touristlocation, String pnrNumber, String placeOfDeparture, String destination, String departureDate, String departureTime, String arrivalDate, String arrivalTime, String seatNumber, int duration,  float ticketPrice, Flight flight, Passenger passenger){
+    public TouristTicket(String hotelAddress, String touristLocation, String pnrNumber, String placeOfDeparture, String destination, String departureDate, String departureTime, String arrivalDate, String arrivalTime, String seatNumber, int duration,  float ticketPrice, Flight flight, Passenger passenger){
         //calling parent(Ticket) constructor
         super(pnrNumber, placeOfDeparture,destination, departureDate, arrivalDate, departureTime, arrivalTime, seatNumber, duration, ticketPrice, flight, passenger);
         this.id =super.getId();
         this.hotelAddress = hotelAddress;
-        this.touristLocation[0] = touristlocation;
+        this.touristLocation[0] = touristLocation;
     }
 
     //method for adding maximum 5 number of tourist locations
@@ -35,6 +35,9 @@ public class TouristTicket extends Ticket {
     }
 
     //setters and getters
+    public int getID(){
+        return id;
+    }
     public String getHotelAddress() {
         return hotelAddress;
     }
